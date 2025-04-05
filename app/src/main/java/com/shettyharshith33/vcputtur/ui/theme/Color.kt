@@ -27,3 +27,8 @@ val netWorkRed = Color(0xFFFF6E6E)
 
 val themeBlue = Color(0xFF7265E3)
 val newGreen = Color(0xFF0F7A15)
+
+
+val dodgerBlue = Color(0xFF3176FF)
+
+

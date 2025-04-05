@@ -1,6 +1,7 @@
 package com.shettyharshith33.afterLoginScreens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,113 +37,26 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-
 @Composable
 fun HomeScreen(navController: NavController) {
-    val images = listOf(
-        R.drawable.adm_open,
-        R.drawable.hp_admissions_open,
-        R.drawable.sowj_lab,
-        R.drawable.harsh_garden,
-        R.drawable.panchajanya,
-        R.drawable.varsha_aurdino
-    )
-    val pagerState = rememberPagerState(pageCount = { images.size })
+
     val coroutineScope = rememberCoroutineScope()
 
-    // Auto-scroll effect
-    LaunchedEffect(pagerState) {
-        while (true) {
-            delay(3000) // Change image every 3 seconds
-            coroutineScope.launch {
-                val nextPage = (pagerState.currentPage + 1) % images.size
-                pagerState.animateScrollToPage(nextPage)
-            }
-        }
-    }
 
-//
-//    Column(
-//        verticalArrangement = Arrangement.Top, modifier = Modifier
-//            .height(325.dp)
-//            .fillMaxWidth()
-//    ) {
-//        Box() {
-//            HorizontalPager(
-//                state = pagerState, modifier = Modifier.fillMaxSize()
-//            ) { page ->
-//                Image(
-//                    modifier = Modifier
-//                        .height(250.dp)
-//                        .fillMaxWidth()
-//                        .clip(RoundedCornerShape(45.dp))
-//                        .padding(top = 10.dp, bottom = 10.dp),
-//                    painter = painterResource(id = images[page]),
-//                    contentDescription = null
-//                )
-//            }
-//
-//        }
-//    }
+
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
     ) {
         item {
-            Spacer(modifier = Modifier.height(25.dp))
-            Box(
-                modifier = Modifier
-                    .height(250.dp)
-                    .fillMaxWidth()
-            ) {
-                HorizontalPager(
-                    state = pagerState,
-                    modifier = Modifier.fillMaxSize()
-                ) { page ->
-                    Image(
-                        modifier = Modifier
-                            .height(250.dp)
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(45.dp))
-                            .padding(top = 10.dp, bottom = 10.dp),
-                        painter = painterResource(id = images[page]),
-                        contentDescription = null
-                    )
-                }
-            }
         }
 
         item {
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(start = 5.dp),
-                text = "Category",
-                fontFamily = FontFamily.Monospace,
-                fontSize = 20.sp
-            )
         }
 
         item {
-            LazyRow(Modifier.padding(10.dp)){
-                item {
-                    Image(
-                        painterResource(R.drawable.library), contentDescription = "",
-                        modifier = Modifier.clip(CircleShape).size(80.dp),
-                        contentScale = ContentScale.Crop)
 
-                }
-
-                item {
-                    Spacer(modifier = Modifier.padding(2.dp))
-                    Image(
-                        painterResource(R.drawable.library), contentDescription = "",
-                        modifier = Modifier.clip(CircleShape).size(80.dp),
-                        contentScale = ContentScale.Crop)
-
-                }
-            }
         }
 
     }
