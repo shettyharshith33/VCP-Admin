@@ -22,3 +22,4 @@ fun AuthCheckScreen(navController: NavController) {
         }
     }
 }
+

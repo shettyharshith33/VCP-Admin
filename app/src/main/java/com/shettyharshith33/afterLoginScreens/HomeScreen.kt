@@ -14,6 +14,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.airbnb.lottie.model.content.CircleShape
+import com.google.firebase.auth.FirebaseAuth
+import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.vcputtur.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -145,3 +148,11 @@ fun HomeScreen(navController: NavController) {
     }
 
 }
+
+//
+//fun signOutAndNavigate(navController: NavController) {
+//    FirebaseAuth.getInstance().signOut()
+//    navController.navigate(BeforeLoginScreensNavigationObject.ONBOARDING_SCREEN) {
+//        popUpTo(0) // Clears all previous routes from backstack
+//    }
+//}
