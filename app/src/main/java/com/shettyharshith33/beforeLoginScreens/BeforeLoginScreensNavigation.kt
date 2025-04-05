@@ -9,6 +9,7 @@ import com.shettyharshith33.afterLoginScreens.HomeScreen
 
 
 object BeforeLoginScreensNavigationObject {
+    const val AUTH_CHECK = "authCheck"
     const val OTP_REQUEST_PAGE = "otpRequestPage"
     const val OTP_VERIFICATION_PAGE = "otpVerificationPage"
     const val ONBOARDING_SCREEN = "onBoardingScreen"
@@ -27,8 +28,13 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
 
     NavHost(
         navController = navController,
-        startDestination = BeforeLoginScreensNavigationObject.ONBOARDING_SCREEN
+        startDestination = BeforeLoginScreensNavigationObject.AUTH_CHECK
     ) {
+
+        composable(BeforeLoginScreensNavigationObject.AUTH_CHECK) {
+            AuthCheckScreen(navController)
+        }
+
         composable(route = BeforeLoginScreensNavigationObject.OTP_VERIFICATION_PAGE) {
             OtpVerificationPage(navController)
         }
