@@ -26,15 +26,16 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.airbnb.lottie.model.content.CircleShape
 import com.shettyharshith33.vcputtur.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-@Preview(showSystemUi = true, showBackground = true)
+
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val images = listOf(
         R.drawable.adm_open,
         R.drawable.hp_admissions_open,

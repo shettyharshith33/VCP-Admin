@@ -27,7 +27,7 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
 
     NavHost(
         navController = navController,
-        startDestination = BeforeLoginScreensNavigationObject.HOME_SCREEN
+        startDestination = BeforeLoginScreensNavigationObject.ONBOARDING_SCREEN
     ) {
         composable(route = BeforeLoginScreensNavigationObject.OTP_VERIFICATION_PAGE) {
             OtpVerificationPage(navController)
@@ -45,7 +45,7 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
             LoginScreen(navController)
         }
         composable(route = BeforeLoginScreensNavigationObject.HOME_SCREEN) {
-            HomeScreen()
+            HomeScreen(navController)
         }
         composable(route = BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE) {
             EmailLinkSentPage(navController)
