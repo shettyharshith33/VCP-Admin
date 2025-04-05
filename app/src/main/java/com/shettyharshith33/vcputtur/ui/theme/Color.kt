@@ -30,5 +30,6 @@ val newGreen = Color(0xFF0F7A15)
 
 
 val dodgerBlue = Color(0xFF3176FF)
+val lightDodgerBlue = Color(0xFF4D85FA)
 
 

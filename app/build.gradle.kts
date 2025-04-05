@@ -99,7 +99,7 @@ dependencies {
     implementation (libs.firebase.dynamic.links.ktx)
     implementation (libs.accompanist.pager)
 
-    implementation(libs.accompanist.systemuicontroller)
+
 
 
 }

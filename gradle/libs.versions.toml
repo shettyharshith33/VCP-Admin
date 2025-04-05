@@ -52,6 +52,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-bom-v3272 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
 firebase-dynamic-links-ktx = { module = "com.google.firebase:firebase-dynamic-links-ktx" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+google-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller" }
 google-firebase-auth = { module = "com.google.firebase:firebase-auth" }
 google-firebase-bom-v3271 = { module = "com.google.firebase:firebase-bom", version.ref = "googleFirebaseBom" }
 google-firebase-database = { module = "com.google.firebase:firebase-database" }
