@@ -1,30 +1,32 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.afterLoginScreens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.model.content.CircleShape
 import com.shettyharshith33.vcputtur.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -110,10 +112,33 @@ fun HomeScreen() {
         item {
             Spacer(modifier = Modifier.height(10.dp))
             Text(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(start = 5.dp),
                 text = "Category",
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(start = 8.dp)
+                fontFamily = FontFamily.Monospace,
+                fontSize = 20.sp
             )
+        }
+
+        item {
+            LazyRow(Modifier.padding(10.dp)){
+                item {
+                    Image(
+                        painterResource(R.drawable.library), contentDescription = "",
+                        modifier = Modifier.clip(CircleShape).size(80.dp),
+                        contentScale = ContentScale.Crop)
+
+                }
+
+                item {
+                    Spacer(modifier = Modifier.padding(2.dp))
+                    Image(
+                        painterResource(R.drawable.library), contentDescription = "",
+                        modifier = Modifier.clip(CircleShape).size(80.dp),
+                        contentScale = ContentScale.Crop)
+
+                }
+            }
         }
 
     }
