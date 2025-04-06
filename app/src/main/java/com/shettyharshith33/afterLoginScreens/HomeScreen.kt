@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
+import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 
 
 @Composable
@@ -73,7 +75,7 @@ fun HomeScreen(navController: NavController) {
                     .padding(10.dp)
                     .background(
                         brush = Brush.horizontalGradient(
-                            colors = listOf(lightDodgerBlue,Color.LightGray) // Blue gradient
+                            colors = listOf(lightDodgerBlue, Color.LightGray) // Blue gradient
                         ),
                         shape = RoundedCornerShape(12.dp)
                     )
@@ -104,8 +106,11 @@ fun HomeScreen(navController: NavController) {
                             text = "VC Puttur",
                             color = Color.White,
                             fontSize = 25.sp,
-                            fontWeight = FontWeight.ExtraBold
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = FontWeight.Black,
+                            fontStyle = FontStyle.Normal
                         )
+
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Excellence in Education since 1965",

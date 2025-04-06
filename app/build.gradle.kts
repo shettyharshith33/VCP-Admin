@@ -98,10 +98,6 @@ dependencies {
     implementation(platform(libs.firebase.bom.v3272))
     implementation (libs.firebase.dynamic.links.ktx)
     implementation (libs.accompanist.pager)
-
-
-
-
 }
 kapt {
     correctErrorTypes = true
