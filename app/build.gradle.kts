@@ -52,6 +52,8 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -98,6 +100,9 @@ dependencies {
     implementation(platform(libs.firebase.bom.v3272))
     implementation (libs.firebase.dynamic.links.ktx)
     implementation (libs.accompanist.pager)
+
+    implementation(libs.androidx.material3.v131) // or latest
+
 }
 kapt {
     correctErrorTypes = true

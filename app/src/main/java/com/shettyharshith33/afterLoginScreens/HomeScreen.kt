@@ -1,6 +1,7 @@
 package com.shettyharshith33.afterLoginScreens
 
 import SetStatusBarColor
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,6 +23,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -32,6 +34,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,8 +42,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
+import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
+import com.shettyharshith33.vcputtur.ui.theme.myGrey
 import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 
 
@@ -48,7 +53,8 @@ import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 fun HomeScreen(navController: NavController) {
 
     val coroutineScope = rememberCoroutineScope()
-    SetStatusBarColor(Color(dodgerBlue.toArgb()), useDarkIcons = false)
+
+    SetStatusBarColor(Color(lightDodgerBlue.toArgb()), useDarkIcons = false)
 
 
 
@@ -56,6 +62,7 @@ fun HomeScreen(navController: NavController) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .background(myGrey)
     ) {
         item {
             Spacer(modifier = Modifier.height(32.dp))
@@ -74,6 +81,7 @@ fun HomeScreen(navController: NavController) {
                 )
             }
         }
+
         item {
             Box(
                 modifier = Modifier
@@ -197,7 +205,7 @@ fun HomeScreen(navController: NavController) {
 
                         Text(
                             "Admissions open for academic year 2025-26 " +
-                                    " • IT Fest Coming Soon..."
+                                    " \n• IT Fest Coming Soon..."
                         )
                     }
                 }
@@ -207,19 +215,283 @@ fun HomeScreen(navController: NavController) {
         item {
             Text(
                 "Quick Access",
-                modifier = Modifier.padding(start = 10.dp)
-                    .clickable {
-                        navController.navigate(BeforeLoginScreensNavigationObject.ONBOARDING_SCREEN)
-                    },
-                fontSize = 20.sp,
+                modifier = Modifier
+                    .padding(start = 15.dp),
+                fontSize = 18.sp,
                 fontFamily = poppinsFontFamily,
                 fontWeight = FontWeight.SemiBold
             )
+        }
+
+        item {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.admissions),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Admissions",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.academics),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Academics",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.departments),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Departments",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.exam),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Examinations",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.college_life),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Campus",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                    Card(
+                        modifier = Modifier
+                            .size(100.dp)
+                            .padding(10.dp),
+                        colors = CardDefaults.cardColors().copy(
+                            containerColor = Color.White
+                        )
+                    ) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.gallery),
+                                contentDescription = "",
+                                modifier = Modifier.size(60.dp),
+                                alignment = Alignment.Center
+                            )
+                            Text(
+                                "Gallery",
+                                fontFamily = poppinsFontFamily,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        item {
+            Text(
+                "Upcoming Events",
+                modifier = Modifier
+                    .padding(start = 15.dp),
+                fontSize = 18.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
+
+        item {
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+                    .padding(10.dp)
+                    .shadow(
+                        elevation = 1.dp,
+                        shape = RoundedCornerShape(12.dp),
+                        ambientColor = Color.LightGray
+                    )
+                    .background(
+                        Color.White
+                    )
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.Transparent // To let gradient show through
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .width(120.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .height(50.dp)
+                                    .width(90.dp)
+                                    .clip(shape = RoundedCornerShape(10.dp))
+                                    .background(Color.White),
+                                contentAlignment = Alignment.CenterStart
+                            )
+                            {
+                                Text(
+                                    "2\n MAY",
+                                    fontSize = 20.sp,
+                                    textAlign = TextAlign.Center,
+                                    color = dodgerBlue,
+                                    fontFamily = poppinsFontFamily,
+                                    fontWeight = FontWeight.Black
+                                )
+                            }
+
+                        }
+
+                        Text(
+                            "Inter Class IT Fest",
+                            fontFamily = poppinsFontFamily,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                }
+            }
 
         }
 
-    }
+        item {
+            Text(
+                "Courses",
+                modifier = Modifier
+                    .padding(start = 15.dp),
+                fontSize = 18.sp,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
 
+    }
 }
 
 //

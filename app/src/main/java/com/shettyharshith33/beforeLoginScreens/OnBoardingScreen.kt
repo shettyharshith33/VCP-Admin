@@ -1,5 +1,6 @@
 package com.shettyharshith33.beforeLoginScreens
 
+import SetStatusBarColor
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +25,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -39,6 +41,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.shettyharshith33.vcputtur.R
+import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGrey
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import com.shettyharshith33.vcputtur.ui.theme.themeBlue
@@ -51,6 +54,8 @@ fun OnBoardingScreen(
 ) {
     val isConnected by viewModel.isConnected.observeAsState()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.welcome_animation))
+
+    SetStatusBarColor(Color(Color.White.toArgb()), useDarkIcons = true)
 
     // Get screen width and height
     val configuration = LocalConfiguration.current

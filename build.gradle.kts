@@ -1,8 +1,7 @@
 buildscript{
     dependencies {
-     classpath(libs.hilt.android.gradle.plugin.v2381)
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
-        classpath("com.google.gms:google-services:4.3.10")
+        classpath(libs.hilt.android.gradle.plugin.v2381)
+        classpath("com.google.gms:google-services:4.4.2")
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
