@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
@@ -51,8 +52,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
 import com.shettyharshith33.vcputtur.R
+import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGreen
 import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
+import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import com.shettyharshith33.vcputtur.ui.theme.themeBlue
 import kotlinx.coroutines.Dispatchers
@@ -64,7 +67,7 @@ fun LoginScreen(
     navController: NavController,
     viewModel: AuthViewModel = hiltViewModel()
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.login_new))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.login_animation_2))
     var loginEmail by remember { mutableStateOf("") }
     var loginPassword by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -72,6 +75,9 @@ fun LoginScreen(
     var isDialog by remember { mutableStateOf(false) }
     var emailError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
     val haptic = LocalHapticFeedback.current
     var showForgotPasswordDialog by remember { mutableStateOf(false) } // ✅ State for dialog visibility
 
@@ -87,34 +93,31 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
 
-
+        Spacer(modifier = Modifier.height(screenHeight * 0.08f))
         Text(
             "Vivekananda College of",
-            fontSize = 20.sp,
-            color = textColor,
+            fontSize = (screenWidth.value * 0.05f).sp,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
             "Arts, Science and Commerce",
-            fontSize = 20.sp,
-            color = textColor,
+            fontSize = (screenWidth.value * 0.05f).sp,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
             "(Autonomous)",
-            fontSize = 15.sp,
-            color = textColor,
+            fontSize = (screenWidth.value * 0.04f).sp,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.height(10.dp))
-        Image(
-            modifier = Modifier.size(80.dp),
-            painter = painterResource(R.drawable.collegelogo),
-            contentDescription = ""
-        )
-        Spacer(modifier = Modifier.height(5.dp))
+
+        Spacer(modifier = Modifier.height(screenHeight * 0.02f))
         LottieAnimation(
             composition = composition,   // Passing the composition here
             modifier = Modifier.size(200.dp),

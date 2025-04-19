@@ -80,6 +80,9 @@ fun SignUpScreen(
     var emailError by remember { mutableStateOf(false) }
     var passwordError by remember { mutableStateOf(false) }
     val haptic = LocalHapticFeedback.current
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
@@ -93,7 +96,7 @@ fun SignUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(screenHeight * 0.08f))
 //        NetworkStatusBanner(isConnected = true)
 
         Spacer(modifier = Modifier.height(10.dp))

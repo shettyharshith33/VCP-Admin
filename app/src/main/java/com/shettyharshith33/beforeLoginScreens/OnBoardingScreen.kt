@@ -2,6 +2,7 @@ package com.shettyharshith33.beforeLoginScreens
 
 import SetStatusBarColor
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -42,7 +43,9 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGrey
+import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import com.shettyharshith33.vcputtur.ui.theme.themeBlue
 
@@ -53,9 +56,9 @@ fun OnBoardingScreen(
     viewModel: NetworkViewModel = hiltViewModel()
 ) {
     val isConnected by viewModel.isConnected.observeAsState()
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.welcome_animation))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.welcome_animation_dodgerblue))
 
-    SetStatusBarColor(Color(Color.White.toArgb()), useDarkIcons = true)
+    SetStatusBarColor(Color(dodgerBlue.toArgb()), useDarkIcons = false)
 
     // Get screen width and height
     val configuration = LocalConfiguration.current
@@ -71,26 +74,29 @@ fun OnBoardingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(screenHeight * 0.05f))
+        Spacer(modifier = Modifier.height(screenHeight * 0.08f))
         NetworkStatusBanner(isConnected ?: false)
 
         // College Name
         Text(
             "Vivekananda College of",
             fontSize = (screenWidth.value * 0.05f).sp,
-            color = textColor,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
             "Arts, Science and Commerce",
             fontSize = (screenWidth.value * 0.05f).sp,
-            color = textColor,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
             "(Autonomous)",
             fontSize = (screenWidth.value * 0.04f).sp,
-            color = textColor,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
 
@@ -123,7 +129,7 @@ fun OnBoardingScreen(
                 .height(screenHeight * 0.06f)
                 .defaultMinSize(minWidth = 200.dp, minHeight = 48.dp)
                 .widthIn(max = 400.dp), // Ensures button doesn't get too large
-            colors = ButtonDefaults.buttonColors(containerColor = themeBlue)
+            colors = ButtonDefaults.buttonColors(containerColor = dodgerBlue)
         ) {
             Text("Login", color = Color.White, fontSize = (screenWidth.value * 0.045f).sp)
         }
