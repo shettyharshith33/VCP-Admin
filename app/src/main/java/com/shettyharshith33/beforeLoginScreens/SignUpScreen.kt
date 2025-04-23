@@ -58,8 +58,10 @@ import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.buttonYellow
+import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGreen
 import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
+import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -105,19 +107,22 @@ fun SignUpScreen(
         Text(
             "Vivekananda College of",
             fontSize = 20.sp,
-            color = textColor,
+            color = dodgerBlue,
+            fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
             "Arts, Science and Commerce",
             fontSize = 20.sp,
-            color = textColor,
+            fontFamily = poppinsFontFamily,
+            color = dodgerBlue,
             fontWeight = FontWeight.Bold
         )
         Text(
             "(Autonomous)",
             fontSize = 15.sp,
-            color = textColor,
+            fontFamily = poppinsFontFamily,
+            color = dodgerBlue,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -129,21 +134,24 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(50.dp))
         Text(
             "Sign Up",
+            fontFamily = poppinsFontFamily,
             fontSize = 30.sp,
-            color = textColor
+            color = dodgerBlue,
+            fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(50.dp))
         Text(
             "Enter your E-mail",
             fontSize = 15.sp,
-            color = textColor,
+            fontFamily = poppinsFontFamily,
+            color = dodgerBlue,
             fontWeight = FontWeight.W500
         )
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             modifier = Modifier
                 .border(
-                    0.5.dp, textColor,
+                    0.5.dp, dodgerBlue,
                     shape = RoundedCornerShape(5.dp)
                 )
                 .height(52.dp)
@@ -156,8 +164,8 @@ fun SignUpScreen(
             },
             placeholder = { Text("E-mail") },
             colors = TextFieldDefaults.colors(
-                unfocusedIndicatorColor = if (emailError) Color.Red else textColor,
-                focusedIndicatorColor = if (emailError) Color.Red else textColor
+                unfocusedIndicatorColor = if (emailError) Color.Red else dodgerBlue,
+                focusedIndicatorColor = if (emailError) Color.Red else dodgerBlue
             )
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -165,14 +173,15 @@ fun SignUpScreen(
         Text(
             "Create a password",
             fontSize = 15.sp,
-            color = textColor,
+            fontFamily = poppinsFontFamily,
+            color = dodgerBlue,
             fontWeight = FontWeight.W500
         )
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedTextField(
             modifier = Modifier
                 .border(
-                    0.5.dp, textColor,
+                    0.5.dp, dodgerBlue,
                     shape = RoundedCornerShape(5.dp)
                 )
                 .height(52.dp)
@@ -186,8 +195,8 @@ fun SignUpScreen(
             placeholder = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
             colors = TextFieldDefaults.colors(
-                unfocusedIndicatorColor = if (passwordError) Color.Red else textColor,
-                focusedIndicatorColor = if (passwordError) Color.Red else textColor
+                unfocusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue,
+                focusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue
             )
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -232,11 +241,12 @@ fun SignUpScreen(
                     }
                 }
             },
-            colors = ButtonDefaults.buttonColors().copy(containerColor = buttonYellow)
+            colors = ButtonDefaults.buttonColors().copy(containerColor = dodgerBlue)
         ) {
             Text(
                 "Create Account",
-                color = Color.Black
+                fontFamily = poppinsFontFamily,
+                color = Color.White
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
@@ -246,34 +256,34 @@ fun SignUpScreen(
         val screenHeight = configuration.screenHeightDp.dp
         // Sign-in with Google Button
 
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .height(screenHeight * 0.06f)
-                .border(0.5.dp, Color.Transparent, shape = RoundedCornerShape(5.dp))
-                .widthIn(max = 400.dp),
-            onClick = {
-                context.showMsg("Currently Unavailable")
-                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                triggerVibration(context)
-                return@Button
-            },
-            shape = RoundedCornerShape(5.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-        ) {
-            Text(
-                "Sign-Up with Google",
-                color = Color.Black,
-                fontSize = (screenWidth.value * 0.04f).sp
-            )
-            Spacer(modifier = Modifier.width(10.dp))
-            Icon(
-                painterResource(R.drawable.googlelogo),
-                contentDescription = null,
-                tint = Color.Unspecified
-            )
-        }
+//
+//        Button(
+//            modifier = Modifier
+//                .fillMaxWidth(0.8f)
+//                .height(screenHeight * 0.06f)
+//                .border(0.5.dp, Color.Transparent, shape = RoundedCornerShape(5.dp))
+//                .widthIn(max = 400.dp),
+//            onClick = {
+//                context.showMsg("Currently Unavailable")
+//                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+//                triggerVibration(context)
+//                return@Button
+//            },
+//            shape = RoundedCornerShape(5.dp),
+//            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+//        ) {
+//            Text(
+//                "Sign-Up with Google",
+//                color = Color.Black,
+//                fontSize = (screenWidth.value * 0.04f).sp
+//            )
+//            Spacer(modifier = Modifier.width(10.dp))
+//            Icon(
+//                painterResource(R.drawable.googlelogo),
+//                contentDescription = null,
+//                tint = Color.Unspecified
+//            )
+//        }
 
     }
 }

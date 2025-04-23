@@ -31,7 +31,7 @@ val newGreen = Color(0xFF0F7A15)
 
 val dodgerBlue = Color(0xFF3176FF)
 val lightDodgerBlue = Color(0xFF4D85FA)
-val lightestDodgerBlue = Color(0xFF93B3F6)
+val lightestDodgerBlue = Color(0xFFC3D3FF)
 
 
 

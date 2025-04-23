@@ -53,6 +53,7 @@ import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObjec
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
+import com.shettyharshith33.vcputtur.ui.theme.lightestDodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGrey
 import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
@@ -71,7 +72,7 @@ fun HomeScreen(navController: NavController) {
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet(modifier = Modifier, drawerContainerColor = lightDodgerBlue) {
-                LazyColumn {
+                LazyColumn() {
                     item {
                         Text(
                             "Developers",
@@ -160,7 +161,7 @@ fun HomeScreen(navController: NavController) {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    modifier = Modifier.height(65.dp),
+                    modifier = Modifier.height(120.dp),
                     colors = TopAppBarColors(
                         containerColor = dodgerBlue,
                         scrolledContainerColor = Color.Transparent,
@@ -199,7 +200,7 @@ fun HomeScreen(navController: NavController) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(myGrey)
+                    .background(lightestDodgerBlue)
                     .padding(innerPadding)
             ) {
 

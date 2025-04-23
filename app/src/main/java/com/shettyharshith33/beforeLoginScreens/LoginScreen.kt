@@ -5,13 +5,15 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.TextView
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,7 +39,6 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,10 +58,8 @@ import com.shettyharshith33.vcputtur.ui.theme.myGreen
 import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
 import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
-import com.shettyharshith33.vcputtur.ui.theme.themeBlue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 
 @Composable
 fun LoginScreen(
@@ -79,179 +78,178 @@ fun LoginScreen(
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
     val haptic = LocalHapticFeedback.current
-    var showForgotPasswordDialog by remember { mutableStateOf(false) } // ✅ State for dialog visibility
+    var showForgotPasswordDialog by remember { mutableStateOf(false) }
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
             CircularProgressIndicator()
         }
     }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .height(400.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-
-        Spacer(modifier = Modifier.height(screenHeight * 0.08f))
-        Text(
-            "Vivekananda College of",
-            fontSize = (screenWidth.value * 0.05f).sp,
-            color = dodgerBlue,
-            fontFamily = poppinsFontFamily,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            "Arts, Science and Commerce",
-            fontSize = (screenWidth.value * 0.05f).sp,
-            color = dodgerBlue,
-            fontFamily = poppinsFontFamily,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            "(Autonomous)",
-            fontSize = (screenWidth.value * 0.04f).sp,
-            color = dodgerBlue,
-            fontFamily = poppinsFontFamily,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(screenHeight * 0.02f))
-        LottieAnimation(
-            composition = composition,   // Passing the composition here
-            modifier = Modifier.size(200.dp),
-            iterations = LottieConstants.IterateForever // Loop indefinitely
-        )
-        Text(
-            "Login",
-            fontSize = 30.sp,
-            color = textColor,
-            fontWeight = FontWeight.W500
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            "Enter your e-mail",
-            fontSize = 15.sp,
-            color = textColor,
-            fontWeight = FontWeight.W500
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(
+        Column(
             modifier = Modifier
-                .border(
-                    0.5.dp, textColor,
-                    shape = RoundedCornerShape(5.dp)
-                )
-                .height(50.dp)
-                .width(240.dp),
-            singleLine = true,
-            value = loginEmail,
-            onValueChange = { loginEmail = it },
-            placeholder = { Text("E-mail") },
-            colors = TextFieldDefaults.colors(
-                unfocusedIndicatorColor = if (emailError) Color.Red else textColor,
-                focusedIndicatorColor = if (emailError) Color.Red else textColor
-            )
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-
-        Text(
-            "Enter your password",
-            fontSize = 15.sp,
-            color = textColor,
-            fontWeight = FontWeight.W500
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(
-            modifier = Modifier
-                .border(
-                    0.5.dp, textColor,
-                    shape = RoundedCornerShape(5.dp)
-                )
-                .height(50.dp)
-                .width(240.dp),
-            value = loginPassword,
-            onValueChange = { loginPassword = it },
-            placeholder = { Text("Password") },
-            singleLine = true,
-            colors = TextFieldDefaults.colors(
-                unfocusedIndicatorColor = if (emailError) Color.Red else textColor,
-                focusedIndicatorColor = if (emailError) Color.Red else textColor
-            )
-        )
-        if (showForgotPasswordDialog) {
-            ShowForgotPasswordDialog(
-                context = context,
-                onDismiss = { showForgotPasswordDialog = false } // Close the dialog
-            )
-        }
-
-        TextButton(
-            onClick = { showForgotPasswordDialog = true } // Show the dialog when clicked
+                .fillMaxSize()
+                .padding(horizontal = screenWidth * 0.1f),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
-            Text("Forgot Password?", color = Color.Blue)
-        }
+            Spacer(modifier = Modifier.height(screenHeight * 0.08f))
 
-        Button(
-            onClick = {
-                if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
-                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    emailError = true
-                    passwordError = true
-                    context.showMsg("Email and Password cannot be empty")
-                    triggerVibration(context)
-                    return@Button
-                }
-                scope.launch(Dispatchers.Main) {
-                    viewModel.loginUser(
-                        AuthUser(loginEmail, loginPassword)
-                    ).collect { result ->
-                        isDialog = when (result) {
-                            is ResultState.Success -> {
-                                val firebaseUser = FirebaseAuth.getInstance().currentUser
-                                if (firebaseUser != null && firebaseUser.isEmailVerified)
-                                {
-                                Handler(Looper.getMainLooper()).post {
-                                    showColoredToast(context, "Login Successful", true)
-                                }
-                                navController.navigate(BeforeLoginScreensNavigationObject.HOME_SCREEN)
-                                }
-                                else{
-                                    Handler(Looper.getMainLooper()).post {
-                                        showColoredToast(context, "Email not verified", false)
+            Text(
+                "Vivekananda College of",
+                fontSize = (screenWidth.value * 0.05f).sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                "Arts, Science and Commerce",
+                fontSize = (screenWidth.value * 0.05f).sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                "(Autonomous)",
+                fontSize = (screenWidth.value * 0.04f).sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.height(screenHeight * 0.02f))
+
+            LottieAnimation(
+                composition = composition,
+                modifier = Modifier.size(screenWidth * 0.5f),
+                iterations = LottieConstants.IterateForever
+            )
+            Text(
+                "Login",
+                fontSize = 30.sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(20.dp))
+
+
+            Text(
+                "Enter your e-mail",
+                fontSize = 15.sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.W500
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .border(0.5.dp, textColor, shape = RoundedCornerShape(5.dp))
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                singleLine = true,
+                value = loginEmail,
+                onValueChange = { loginEmail = it },
+                placeholder = { Text("E-mail") },
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = if (emailError) Color.Red else dodgerBlue,
+                    focusedIndicatorColor = if (emailError) Color.Red else dodgerBlue
+                )
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                "Enter your password",
+                fontSize = 15.sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.W500
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .border(0.5.dp, textColor, shape = RoundedCornerShape(5.dp))
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                value = loginPassword,
+                onValueChange = { loginPassword = it },
+                placeholder = { Text("Password") },
+                singleLine = true,
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue,
+                    focusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue
+                )
+            )
+
+            if (showForgotPasswordDialog) {
+                ShowForgotPasswordDialog(
+                    context = context,
+                    onDismiss = { showForgotPasswordDialog = false })
+            }
+
+            TextButton(onClick = { showForgotPasswordDialog = true }) {
+                Text("Forgot Password?", color = Color.Blue)
+            }
+
+            Button(
+                onClick = {
+                    if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                        emailError = true
+                        passwordError = true
+                        context.showMsg("Email and Password cannot be empty")
+                        triggerVibration(context)
+                        return@Button
+                    }
+                    scope.launch(Dispatchers.Main) {
+                        viewModel.loginUser(AuthUser(loginEmail, loginPassword)).collect { result ->
+                            isDialog = when (result) {
+                                is ResultState.Success -> {
+                                    val firebaseUser = FirebaseAuth.getInstance().currentUser
+                                    if (firebaseUser != null && firebaseUser.isEmailVerified) {
+                                        Handler(Looper.getMainLooper()).post {
+                                            showColoredToast(context, "Login Successful", true)
+                                        }
+                                        navController.navigate(BeforeLoginScreensNavigationObject.HOME_SCREEN)
+                                    } else {
+                                        Handler(Looper.getMainLooper()).post {
+                                            showColoredToast(context, "Email not verified", false)
+                                        }
+                                        FirebaseAuth.getInstance().signOut()
                                     }
-                                    FirebaseAuth.getInstance().signOut() // Sign out unverified users
+                                    false
                                 }
-                                false
+
+                                is ResultState.Failure -> {
+                                    val errorMsg = result.msg.toString().lowercase()
+                                    val errorMessage = when {
+                                        "password is invalid" in errorMsg -> "Incorrect Password"
+                                        "no user record" in errorMsg || "there is no user" in errorMsg -> "Email Not Registered"
+                                        "network error" in errorMsg -> "Check Your Internet Connection 🌐"
+                                        else -> "Email or Password is Incorrect"
+                                    }
+                                    Handler(Looper.getMainLooper()).post {
+                                        showColoredToast(context, errorMessage, false)
+                                    }
+                                    false
+                                }
+
+                                is ResultState.Loading -> true
                             }
-
-                            is ResultState.Failure -> {
-                                val errorMsg = result.msg.toString().lowercase()
-                                val errorMessage = when {
-                                    "password is invalid" in errorMsg -> "Incorrect Password"
-                                    "no user record" in errorMsg || "there is no user" in errorMsg -> "Email Not Registered"
-                                    "network error" in errorMsg -> "Check Your Internet Connection 🌐"
-                                    else -> "Email or Password is Incorrect"
-                                }
-                                Handler(Looper.getMainLooper()).post {
-                                    showColoredToast(context, errorMessage, false)
-                                }
-                                false
-                            }
-
-
-                            is ResultState.Loading -> true
                         }
                     }
-                }
-            },
-            colors = ButtonDefaults.buttonColors().copy(containerColor = themeBlue)
-        ) {
-            Text(
-                "Next",
-                color = Color.White
-            )
+                },
+                modifier = Modifier.width(150.dp),
+                colors = ButtonDefaults.buttonColors().copy(containerColor = dodgerBlue)
+            ) {
+                Text("Login", color = Color.White)
+            }
         }
     }
 }
@@ -259,12 +257,12 @@ fun LoginScreen(
 @Composable
 fun ShowForgotPasswordDialog(
     context: Context,
-    onDismiss: () -> Unit // Accepts a lambda for dismissing the dialog
+    onDismiss: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
 
     AlertDialog(
-        onDismissRequest = {}, // Calls onDismiss when dismissed
+        onDismissRequest = {},
         title = { Text("Reset Password") },
         text = {
             Column {
@@ -281,7 +279,7 @@ fun ShowForgotPasswordDialog(
         confirmButton = {
             TextButton(onClick = {
                 resetPassword(context, email)
-                onDismiss() // Close the dialog after sending reset link
+                onDismiss()
             }) {
                 Text("Send Reset Link")
             }
@@ -294,9 +292,6 @@ fun ShowForgotPasswordDialog(
     )
 }
 
-
-
-
 fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
     try {
         val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
@@ -304,7 +299,7 @@ fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
 
         if (view != null) {
             val bgColor = if (isSuccess) myGreen.toArgb() else netWorkRed.toArgb()
-            view.setBackgroundColor(bgColor) // Change background color
+            view.setBackgroundColor(bgColor)
 
             val textView = view.findViewById<TextView>(android.R.id.message)
             textView?.setTextColor(if (isSuccess) Color.Black.toArgb() else Color.White.toArgb())
@@ -314,20 +309,16 @@ fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
             throw Exception("Custom toast not supported")
         }
     } catch (e: Exception) {
-        // Fallback to normal toast if custom styling fails
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
-
-
 
 fun resetPassword(context: Context, email: String) {
     if (email.isBlank()) {
         Handler(Looper.getMainLooper()).post {
             showColoredToast(context, "Please enter an email", false)
         }
-            return
-
+        return
     }
 
     FirebaseAuth.getInstance().sendPasswordResetEmail(email)
@@ -340,4 +331,3 @@ fun resetPassword(context: Context, email: String) {
             }
         }
 }
-
