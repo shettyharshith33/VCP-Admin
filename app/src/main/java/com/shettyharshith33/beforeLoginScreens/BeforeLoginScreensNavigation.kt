@@ -5,7 +5,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.shettyharshith33.afterLoginScreens.CgpaCalculatorScreen
+import com.shettyharshith33.afterLoginScreens.Gallery
 import com.shettyharshith33.afterLoginScreens.HomeScreen
+import com.shettyharshith33.afterLoginScreens.ResultDisplay
 
 
 object BeforeLoginScreensNavigationObject {
@@ -17,6 +20,10 @@ object BeforeLoginScreensNavigationObject {
     const val LOGIN_SCREEN = "loginScreen"
     const val HOME_SCREEN = "homeScreen"
     const val EMAIL_LINK_SENT_PAGE = "emailLinkSentPage"
+    const val CGPA_CALCULATOR_SCREEN = "cgpaCalculatorScreen"
+    const val GALLERY = "gallery"
+//    const val RESULT_DISPLAY = "resultDisplay"
+
 
 }
 
@@ -56,6 +63,15 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
         composable(route = BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE) {
             EmailLinkSentPage(navController)
         }
+        composable(route = BeforeLoginScreensNavigationObject.CGPA_CALCULATOR_SCREEN) {
+            CgpaCalculatorScreen(navController)
+        }
+        composable (route = BeforeLoginScreensNavigationObject.GALLERY) {
+            Gallery(navController)
+        }
+//        composable (route = BeforeLoginScreensNavigationObject.RESULT_DISPLAY) {
+//            ResultDisplay(result = "",navController)
+//        }
 
 
     }

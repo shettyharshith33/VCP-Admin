@@ -58,7 +58,7 @@ fun OnBoardingScreen(
     val isConnected by viewModel.isConnected.observeAsState()
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.welcome_animation_dodgerblue))
 
-    SetStatusBarColor(Color(dodgerBlue.toArgb()), useDarkIcons = false)
+    SetStatusBarColor(Color(lightDodgerBlue.toArgb()), useDarkIcons = false)
 
     // Get screen width and height
     val configuration = LocalConfiguration.current

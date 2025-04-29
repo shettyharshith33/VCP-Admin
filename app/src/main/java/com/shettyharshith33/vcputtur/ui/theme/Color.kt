@@ -13,7 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 
 
 val textColor = Color(0xFF241F82)
-val myGrey = Color(0xFFE8E8E8)
+val myGrey = Color(0xFFCCCCCC)
 val signInGrey = Color(0xFFF3F3F3)
 
 val myGreen = Color(0xFF97FF97)
@@ -31,7 +31,9 @@ val newGreen = Color(0xFF0F7A15)
 
 val dodgerBlue = Color(0xFF3176FF)
 val lightDodgerBlue = Color(0xFF4D85FA)
-val lightestDodgerBlue = Color(0xFFC3D3FF)
+val lightestDodgerBlue = Color(0xFFC9D8FF)
+val cardColor = Color(0xFFA2BAFF)
+val resultColor = Color(0xFFFFC107)
 
 
 
