@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens
+package com.shettyharshith33.teachersScreens
 
 import android.content.Context
 import android.os.Handler
@@ -57,6 +57,10 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.shettyharshith33.beforeLoginScreens.AuthViewModel
+import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
+import com.shettyharshith33.beforeLoginScreens.triggerVibration
 import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
 import com.shettyharshith33.vcputtur.R
@@ -67,15 +71,17 @@ import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
 import com.shettyharshith33.vcputtur.ui.theme.textColor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 @Composable
-fun LoginScreen(
+fun TeachersLogin(
     navController: NavController,
     viewModel: AuthViewModel = hiltViewModel()
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.login_animation_2))
-    var loginEmail by remember { mutableStateOf("") }
-    var loginPassword by remember { mutableStateOf("") }
+    var uid by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var pwd by remember { mutableStateOf("") }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     var isDialog by remember { mutableStateOf(false) }
@@ -87,6 +93,7 @@ fun LoginScreen(
     val haptic = LocalHapticFeedback.current
     var showForgotPasswordDialog by remember { mutableStateOf(false) }
     var passwordVisible by remember { mutableStateOf(false) }
+    val encodedName = java.net.URLEncoder.encode(name, "UTF-8")
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
@@ -131,11 +138,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(screenHeight * 0.02f))
 
-            LottieAnimation(
-                composition = composition,
-                modifier = Modifier.size(screenWidth * 0.5f),
-                iterations = LottieConstants.IterateForever
-            )
             Text(
                 "Login",
                 fontSize = 30.sp,
@@ -147,7 +149,7 @@ fun LoginScreen(
 
 
             Text(
-                "Enter your e-mail",
+                "Enter your Name",
                 fontSize = 15.sp,
                 color = dodgerBlue,
                 fontFamily = poppinsFontFamily,
@@ -161,9 +163,34 @@ fun LoginScreen(
                     .height(50.dp)
                     .fillMaxWidth(),
                 singleLine = true,
-                value = loginEmail,
-                onValueChange = { loginEmail = it },
-                placeholder = { Text("E-mail") },
+                value = name,
+                onValueChange = { name = it },
+                placeholder = { Text("Name") },
+                colors = TextFieldDefaults.colors(
+                    unfocusedIndicatorColor = if (emailError) Color.Red else dodgerBlue,
+                    focusedIndicatorColor = if (emailError) Color.Red else dodgerBlue
+                )
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(
+                "Enter your UID",
+                fontSize = 15.sp,
+                color = dodgerBlue,
+                fontFamily = poppinsFontFamily,
+                fontWeight = FontWeight.W500
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .border(0.5.dp, textColor, shape = RoundedCornerShape(5.dp))
+                    .height(50.dp)
+                    .fillMaxWidth(),
+                singleLine = true,
+                value = uid,
+                onValueChange = { uid = it },
+                placeholder = { Text("UID") },
                 colors = TextFieldDefaults.colors(
                     unfocusedIndicatorColor = if (emailError) Color.Red else dodgerBlue,
                     focusedIndicatorColor = if (emailError) Color.Red else dodgerBlue
@@ -185,8 +212,8 @@ fun LoginScreen(
                     .border(0.5.dp, textColor, shape = RoundedCornerShape(5.dp))
                     .height(50.dp)
                     .fillMaxWidth(),
-                value = loginPassword,
-                onValueChange = { loginPassword = it },
+                value = pwd,
+                onValueChange = { pwd = it },
                 placeholder = { Text("Password") },
                 visualTransformation =
                 if (passwordVisible)
@@ -201,7 +228,7 @@ fun LoginScreen(
                         R.drawable.visibilty_off
 
                     Image(painterResource(icon), contentDescription = "",
-                        modifier = Modifier.clickable { passwordVisible =!passwordVisible })
+                        modifier = Modifier.clickable { passwordVisible = !passwordVisible })
                 },
                 singleLine = true,
                 colors = TextFieldDefaults.colors(
@@ -210,62 +237,56 @@ fun LoginScreen(
                 )
             )
 
-            if (showForgotPasswordDialog) {
-                ShowForgotPasswordDialog(
-                    context = context,
-                    onDismiss = { showForgotPasswordDialog = false })
-            }
-
-            TextButton(onClick = { showForgotPasswordDialog = true }) {
-                Text("Forgot Password?", color = Color.Blue)
-            }
-
             Button(
                 onClick = {
-                    if (loginEmail.isEmpty() || loginPassword.isEmpty()) {
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                        emailError = true
-                        passwordError = true
-                        context.showMsg("Email and Password cannot be empty")
-                        triggerVibration(context)
-                        return@Button
-                    }
-                    scope.launch(Dispatchers.Main) {
-                        viewModel.loginUser(AuthUser(loginEmail, loginPassword)).collect { result ->
-                            isDialog = when (result) {
-                                is ResultState.Success -> {
-                                    val firebaseUser = FirebaseAuth.getInstance().currentUser
-                                    if (firebaseUser != null && firebaseUser.isEmailVerified) {
-                                        Handler(Looper.getMainLooper()).post {
-                                            showColoredToast(context, "Login Successful", true)
+                    if (uid.isNotEmpty() && pwd.isNotEmpty()) {
+                        isDialog = true
+                        scope.launch(Dispatchers.IO) {
+                            try {
+                                val db = FirebaseFirestore.getInstance()
+                                val snapshot = db.collection("teachers")
+                                    .whereEqualTo("uid", uid)
+                                    .get()
+                                    .await()
+
+                                if (!snapshot.isEmpty) {
+                                    val teacher = snapshot.documents[0]
+                                    val storedPassword = teacher.getString("pwd")
+                                    if (storedPassword == pwd) {
+                                        withContext(Dispatchers.Main) {
+//                                            navController.navigate(BeforeLoginScreensNavigationObject.TEACHERS_HOME_SCREEN)
+                                            navController.navigate("teachers_home_screen/$uid")
                                         }
-                                        navController.navigate(BeforeLoginScreensNavigationObject.HOME_SCREEN)
                                     } else {
-                                        Handler(Looper.getMainLooper()).post {
-                                            showColoredToast(context, "Email not verified", false)
+                                        withContext(Dispatchers.Main) {
+                                            showColoredToast(context, "Incorrect password.", false)
+                                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                            triggerVibration(context)
                                         }
-                                        FirebaseAuth.getInstance().signOut()
                                     }
-                                    false
+                                } else {
+                                    withContext(Dispatchers.Main) {
+                                        showColoredToast(context, "Teacher not found.", false)
+                                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                        triggerVibration(context)
+                                    }
                                 }
-
-                                is ResultState.Failure -> {
-                                    val errorMsg = result.msg.toString().lowercase()
-                                    val errorMessage = when {
-                                        "password is invalid" in errorMsg -> "Incorrect Password"
-                                        "no user record" in errorMsg || "there is no user" in errorMsg -> "Email Not Registered"
-                                        "network error" in errorMsg -> "Check Your Internet Connection 🌐"
-                                        else -> "Email or Password is Incorrect"
-                                    }
-                                    Handler(Looper.getMainLooper()).post {
-                                        showColoredToast(context, errorMessage, false)
-                                    }
-                                    false
+                            } catch (e: Exception) {
+                                withContext(Dispatchers.Main) {
+                                    showColoredToast(context, "Error: ${e.message}", false)
+                                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                    triggerVibration(context)
                                 }
-
-                                is ResultState.Loading -> true
+                            } finally {
+                                withContext(Dispatchers.Main) {
+                                    isDialog = false
+                                }
                             }
                         }
+                    } else {
+                        showColoredToast(context, "Please enter both UID and password.", false)
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                        triggerVibration(context)
                     }
                 },
                 modifier = Modifier.width(150.dp),
@@ -275,44 +296,6 @@ fun LoginScreen(
             }
         }
     }
-}
-
-@Composable
-fun ShowForgotPasswordDialog(
-    context: Context,
-    onDismiss: () -> Unit
-) {
-    var email by remember { mutableStateOf("") }
-
-    AlertDialog(
-        onDismissRequest = {},
-        title = { Text("Reset Password") },
-        text = {
-            Column {
-                Text("Enter your registered email to receive a password reset link.")
-                Spacer(modifier = Modifier.height(8.dp))
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    label = { Text("Email") },
-                    singleLine = true
-                )
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = {
-                resetPassword(context, email)
-                onDismiss()
-            }) {
-                Text("Send Reset Link")
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = { onDismiss() }) {
-                Text("Cancel")
-            }
-        }
-    )
 }
 
 fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
@@ -336,21 +319,4 @@ fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
     }
 }
 
-fun resetPassword(context: Context, email: String) {
-    if (email.isBlank()) {
-        Handler(Looper.getMainLooper()).post {
-            showColoredToast(context, "Please enter an email", false)
-        }
-        return
-    }
 
-    FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-        .addOnSuccessListener {
-            showColoredToast(context, "Reset link sent! Check your email", true)
-        }
-        .addOnFailureListener {
-            Handler(Looper.getMainLooper()).post {
-                showColoredToast(context, "Failed to send reset link", false)
-            }
-        }
-}

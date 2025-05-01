@@ -1,4 +1,3 @@
-
 package com.shettyharshith33.afterLoginScreens
 
 import SetStatusBarColor
@@ -7,6 +6,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -75,8 +76,7 @@ fun CgpaCalculatorScreen(navController: NavController) {
                             fontWeight = FontWeight.W900
                         )
                     }
-                }
-                else if (!calculationDone) {
+                } else if (!calculationDone) {
                     for (sem in 1..semesterCount) {
                         Spacer(Modifier.height(30.dp))
                         Text(
@@ -126,8 +126,7 @@ fun CgpaCalculatorScreen(navController: NavController) {
                         )
                     }
                     Spacer(Modifier.height(35.dp))
-                }
-                else {
+                } else {
                     // Calculation done, show only result
                     ResultDisplay(result, navController)
                 }
@@ -171,9 +170,23 @@ fun ResultDisplay(result: CgpaResult?, navController: NavController) {
             )
             Spacer(modifier = Modifier.height(20.dp))
 
-            ResultLine(label = "Total Marks", value = "${"%.2f".format(result.totalScored)} / ${"%.2f".format(result.totalOutOf)}")
+            ResultLine(
+                label = "Total Marks",
+                value = "${"%.2f".format(result.totalScored)} / ${"%.2f".format(result.totalOutOf)}"
+            )
             ResultLine(label = "Percentage", value = "${"%.2f".format(result.percentage)}%")
             ResultLine(label = "CGPA", value = "${"%.2f".format(result.cgpa)}")
+
+            Button(onClick = { navController.navigate(BeforeLoginScreensNavigationObject.HOME_SCREEN)},
+                colors = ButtonDefaults.buttonColors().copy(containerColor = lightDodgerBlue)) {
+                Text("Done")
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button(onClick = { navController.navigate(BeforeLoginScreensNavigationObject.CGPA_CALCULATOR_SCREEN)},
+                colors = ButtonDefaults.buttonColors().copy(containerColor = lightDodgerBlue)) {
+                Text("Check Again")
+            }
         }
     }
 }
@@ -186,8 +199,18 @@ fun ResultLine(label: String, value: String) {
             .padding(horizontal = 20.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(label, fontWeight = FontWeight.SemiBold, fontFamily = poppinsFontFamily, color = Color.DarkGray)
-        Text(value, fontWeight = FontWeight.SemiBold, fontFamily = poppinsFontFamily, color = Color.Black)
+        Text(
+            label,
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = poppinsFontFamily,
+            color = Color.DarkGray
+        )
+        Text(
+            value,
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = poppinsFontFamily,
+            color = Color.Black
+        )
     }
 }
 

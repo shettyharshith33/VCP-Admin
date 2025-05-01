@@ -35,6 +35,10 @@ val lightestDodgerBlue = Color(0xFFC9D8FF)
 val cardColor = Color(0xFFA2BAFF)
 val resultColor = Color(0xFFFFC107)
 
+val orange = Color(0xFFFF7039)
+
+
+
 
 
 

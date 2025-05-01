@@ -10,6 +10,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,6 +47,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -80,6 +82,7 @@ fun SignUpScreen(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
+    var passwordVisible by remember {mutableStateOf(false)}
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
@@ -188,7 +191,21 @@ fun SignUpScreen(
             },
             maxLines = 1,
             placeholder = { Text("Password") },
-            visualTransformation = PasswordVisualTransformation(),
+            visualTransformation =
+            if (passwordVisible)
+                VisualTransformation.None
+            else {
+                PasswordVisualTransformation()
+            },
+            trailingIcon = {
+                val icon = if (passwordVisible)
+                    R.drawable.visibilty
+                else
+                    R.drawable.visibilty_off
+
+                Image(painterResource(icon), contentDescription = "",
+                    modifier = Modifier.clickable { passwordVisible =!passwordVisible })
+            },
             colors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue,
                 focusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue

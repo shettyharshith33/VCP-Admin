@@ -103,6 +103,13 @@ dependencies {
 
     implementation(libs.androidx.material3.v131) // or latest
 
+    implementation(libs.compose.shimmer)
+    implementation (libs.coil.compose)
+
+
+
+
+
 }
 kapt {
     correctErrorTypes = true
