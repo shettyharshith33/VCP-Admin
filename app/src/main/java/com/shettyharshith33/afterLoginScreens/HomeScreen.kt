@@ -59,7 +59,6 @@ import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.beforeLoginScreens.showMsg
-import com.shettyharshith33.beforeLoginScreens.triggerHapticFeedback
 import com.shettyharshith33.beforeLoginScreens.triggerVibration
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.cardColor
@@ -433,7 +432,11 @@ fun HomeScreen(navController: NavController) {
                                 }
                             }
                             Card(
-                                modifier = Modifier.size(100.dp),
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clickable {
+                                        navController.navigate(BeforeLoginScreensNavigationObject.ACADEMICS_SCREEN)
+                                    },
                                 colors = CardDefaults.cardColors().copy(
                                     containerColor = signInGrey
                                 )
@@ -446,11 +449,23 @@ fun HomeScreen(navController: NavController) {
                                     Image(
                                         painter = painterResource(R.drawable.academics),
                                         contentDescription = "",
-                                        modifier = Modifier.size(60.dp),
+                                        modifier = Modifier
+                                            .size(60.dp)
+                                            .clickable {
+                                                navController.navigate(
+                                                    BeforeLoginScreensNavigationObject.ACADEMICS_SCREEN
+                                                )
+                                            },
                                         alignment = Alignment.Center
                                     )
                                     Text(
                                         "Academics",
+                                        modifier = Modifier
+                                            .clickable {
+                                                navController.navigate(
+                                                    BeforeLoginScreensNavigationObject.ACADEMICS_SCREEN
+                                                )
+                                            },
                                         fontFamily = poppinsFontFamily,
                                         fontSize = 12.sp,
                                         fontWeight = FontWeight.SemiBold
@@ -458,7 +473,11 @@ fun HomeScreen(navController: NavController) {
                                 }
                             }
                             Card(
-                                modifier = Modifier.size(100.dp),
+                                modifier = Modifier
+                                    .size(100.dp)
+                                    .clickable {
+                                        navController.navigate(BeforeLoginScreensNavigationObject.DEPARTMENTS)
+                                    },
                                 colors = CardDefaults.cardColors().copy(
                                     containerColor = signInGrey
                                 )
@@ -471,14 +490,26 @@ fun HomeScreen(navController: NavController) {
                                     Image(
                                         painter = painterResource(R.drawable.departments),
                                         contentDescription = "",
-                                        modifier = Modifier.size(60.dp),
+                                        modifier = Modifier
+                                            .size(60.dp)
+                                            .clickable {
+                                                navController.navigate(
+                                                    BeforeLoginScreensNavigationObject.DEPARTMENTS
+                                                )
+                                            },
                                         alignment = Alignment.Center
                                     )
                                     Text(
                                         "Departments",
                                         fontFamily = poppinsFontFamily,
                                         fontSize = 12.sp,
-                                        fontWeight = FontWeight.SemiBold
+                                        fontWeight = FontWeight.SemiBold,
+                                        modifier = Modifier
+                                            .clickable {
+                                                navController.navigate(
+                                                    BeforeLoginScreensNavigationObject.DEPARTMENTS
+                                                )
+                                            }
                                     )
                                 }
                             }

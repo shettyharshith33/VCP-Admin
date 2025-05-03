@@ -57,14 +57,17 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shettyharshith33.beforeLoginScreens.AuthViewModel
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
+import com.shettyharshith33.beforeLoginScreens.showMsg
 import com.shettyharshith33.beforeLoginScreens.triggerVibration
 import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
 import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
 import com.shettyharshith33.vcputtur.ui.theme.myGreen
 import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
 import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
@@ -255,6 +258,18 @@ fun TeachersLogin(
                                     if (storedPassword == pwd) {
                                         withContext(Dispatchers.Main) {
 //                                            navController.navigate(BeforeLoginScreensNavigationObject.TEACHERS_HOME_SCREEN)
+
+                                            val dbRealtime =
+                                                FirebaseDatabase.getInstance().reference
+                                            dbRealtime.child("lastLoggedInTeacher").setValue(
+                                                mapOf(
+                                                    "uid" to uid,
+                                                    "name" to name
+                                                )
+                                            )
+
+
+
                                             navController.navigate("teachers_home_screen/$uid")
                                         }
                                     } else {
@@ -318,5 +333,40 @@ fun showColoredToast(context: Context, message: String, isSuccess: Boolean) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

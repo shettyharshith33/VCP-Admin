@@ -106,6 +106,13 @@ dependencies {
     implementation(libs.compose.shimmer)
     implementation (libs.coil.compose)
 
+    implementation (libs.androidx.datastore.preferences)
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+
+
+
+
 
 
 

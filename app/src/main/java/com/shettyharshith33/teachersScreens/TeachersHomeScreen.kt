@@ -124,7 +124,7 @@ fun TeachersHomeScreen(navController: NavController, uid: String) {
     // Hide welcome message after 3 seconds
     LaunchedEffect(showWelcome) {
         if (showWelcome) {
-            delay(3000) // 3 seconds
+            delay(5000) // 3 seconds
             showWelcome = false
         }
     }
@@ -138,6 +138,16 @@ fun TeachersHomeScreen(navController: NavController, uid: String) {
         ModalDrawerSheet(modifier = Modifier, drawerContainerColor = lightDodgerBlue)
         {
             LazyColumn() {
+                item {
+                    Text(
+                        teacherName,
+                        fontFamily = poppinsFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier
+                            .padding(16.dp)
+                    )
+                }
                 item {
                     Text("Developers",
                         fontFamily = poppinsFontFamily,
@@ -267,25 +277,26 @@ fun TeachersHomeScreen(navController: NavController, uid: String) {
             ) {
 
                 item {
-                    Spacer(modifier = Modifier.height(20.dp))
+
 
                     AnimatedVisibility(
                         visible = showWelcome,
                         enter = expandVertically(),
                         exit = shrinkVertically()
                     ) {
+                        Spacer(modifier = Modifier.height(20.dp))
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp, vertical = 8.dp)
-                                .background(myGreen, RoundedCornerShape(8.dp))
+                                .background(lightDodgerBlue, RoundedCornerShape(8.dp))
                                 .padding(12.dp),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "Welcome, ${teacherName.ifEmpty {""}}!",
+                                text = "Welcome, ${teacherName.ifEmpty { "" }}!",
                                 fontFamily = poppinsFontFamily,
-                                fontWeight = FontWeight.Bold,
+                                fontWeight = FontWeight.SemiBold,
                                 color = Color.White,
                                 fontSize = 18.sp
                             )
@@ -1094,5 +1105,6 @@ fun AutoScrollingImageCarousel(imageList: List<Int>) {
         }
     }
 }
+
 
 
