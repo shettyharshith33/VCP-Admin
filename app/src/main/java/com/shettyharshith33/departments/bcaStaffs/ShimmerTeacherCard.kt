@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs
+package com.shettyharshith33.departments.bcaStaffs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.shettyharshith33.vcputtur.ui.theme.myGrey
+import com.shettyharshith33.vcputturadmin.ui.theme.myGrey
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
@@ -53,7 +53,7 @@ fun ShimmerTeacherCard(teacher: Teacher) {
                 // Circle shimmer for teacher profile picture
                 Box(
                     modifier = Modifier
-                        .size(64.dp)
+                        .size(65.dp)
                         .clip(CircleShape)
                         .background(myGrey)
                 )

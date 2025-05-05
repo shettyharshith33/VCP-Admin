@@ -1,7 +1,6 @@
-package com.shettyharshith33.vcputtur.ui.theme
+package com.shettyharshith33.vcputturadmin.ui.theme
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 
 val Purple80 = Color(0xFFEDE7FF)
 val PurpleGrey80 = Color(0xFFCCC2DC)

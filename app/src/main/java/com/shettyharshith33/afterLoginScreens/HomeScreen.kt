@@ -60,15 +60,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
 import com.shettyharshith33.beforeLoginScreens.showMsg
 import com.shettyharshith33.beforeLoginScreens.triggerVibration
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.cardColor
-import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.lightestDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.myGrey
-import com.shettyharshith33.vcputtur.ui.theme.orange
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
-import com.shettyharshith33.vcputtur.ui.theme.signInGrey
-import com.shettyharshith33.vcputtur.ui.theme.textColor
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.cardColor
+import com.shettyharshith33.vcputturadmin.ui.theme.lightDodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.lightestDodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.myGrey
+import com.shettyharshith33.vcputturadmin.ui.theme.orange
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.ui.theme.signInGrey
+import com.shettyharshith33.vcputturadmin.ui.theme.textColor
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

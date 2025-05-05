@@ -1,6 +1,5 @@
-package com.shettyharshith33.vcputtur.ui.theme
+package com.shettyharshith33.vcputturadmin.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

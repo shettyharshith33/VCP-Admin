@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs
+package com.shettyharshith33.departments.bcaStaffs
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
 
 @Composable
 fun TeacherCard(teacher: Teacher, onClick: () -> Unit) {

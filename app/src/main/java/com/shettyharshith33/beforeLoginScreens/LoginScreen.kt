@@ -23,8 +23,6 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -59,12 +57,12 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.firebase.auth.FirebaseAuth
 import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.myGreen
-import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
-import com.shettyharshith33.vcputtur.ui.theme.textColor
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.myGreen
+import com.shettyharshith33.vcputturadmin.ui.theme.netWorkRed
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.ui.theme.textColor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

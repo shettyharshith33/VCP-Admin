@@ -1,4 +1,4 @@
-package com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs
+package com.shettyharshith33.departments.bcaStaffs
 
 data class Teacher(
     val name: String = "",

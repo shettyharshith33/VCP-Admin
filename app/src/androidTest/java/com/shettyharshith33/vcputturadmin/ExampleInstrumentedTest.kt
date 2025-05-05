@@ -1,4 +1,4 @@
-package com.shettyharshith33.vcputtur
+package com.shettyharshith33.vcputturadmin
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

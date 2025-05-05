@@ -14,7 +14,8 @@ import com.shettyharshith33.afterLoginScreens.CgpaCalculatorScreen
 import com.shettyharshith33.afterLoginScreens.DepartmentsScreen
 import com.shettyharshith33.afterLoginScreens.Gallery
 import com.shettyharshith33.afterLoginScreens.HomeScreen
-import com.shettyharshith33.beforeLoginScreens.departments.bcaStaffs.TeacherListScreen
+import com.shettyharshith33.departments.bcaStaffs.BCATeacherListScreen
+import com.shettyharshith33.departments.bcomStaffs.BCOMTeacherListScreen
 import com.shettyharshith33.teachersScreens.TeachersHomeScreen
 import com.shettyharshith33.teachersScreens.TeachersLogin
 import com.shettyharshith33.ugCourses.BA
@@ -44,10 +45,15 @@ object BeforeLoginScreensNavigationObject {
     const val ACADEMICS_SCREEN = "academicsScreen"
     const val DEPARTMENTS = "departments"
 
-    const val TEACHER_LIST_SCREEN = "teacherListScreen"
+    const val BCA_TEACHER_LIST_SCREEN = "bcaTeacherListScreen"
+
+
+    const val BCOM_TEACHER_LIST_SCREEN = "bcomTeacherListScreen"
+
 
     const val TEACHERS_LOGIN = "teachersLogin"
-//    const val TEACHERS_HOME_SCREEN = "teachersHomeScreen"
+
+
     const val TEACHERS_HOME_SCREEN = "teachers_home_screen/{uid}"
 
 
@@ -114,8 +120,11 @@ fun BeforeLoginScreensNavigation(navController: NavController) {
         composable(route = BeforeLoginScreensNavigationObject.TEACHERS_LOGIN) {
             TeachersLogin(navController)
         }
-        composable(route = BeforeLoginScreensNavigationObject.TEACHER_LIST_SCREEN) {
-            TeacherListScreen(viewModel = viewModel(),navController)
+        composable(route = BeforeLoginScreensNavigationObject.BCA_TEACHER_LIST_SCREEN) {
+            BCATeacherListScreen(viewModel = viewModel(), navController)
+        }
+        composable(route = BeforeLoginScreensNavigationObject.BCOM_TEACHER_LIST_SCREEN) {
+            BCOMTeacherListScreen(viewModel = viewModel(), navController)
         }
 
 //        composable(route = BeforeLoginScreensNavigationObject.TEACHERS_HOME_SCREEN) {

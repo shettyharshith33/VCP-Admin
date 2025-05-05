@@ -1,11 +1,11 @@
-package com.shettyharshith33.vcputtur.ui.theme
+package com.shettyharshith33.vcputturadmin.ui.theme
 
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.shettyharshith33.vcputtur.R
+import com.shettyharshith33.vcputturadmin.R
 
 val poppinsFontFamily = FontFamily(
     Font(R.font.poppins_italic,FontWeight.Normal, FontStyle.Italic),

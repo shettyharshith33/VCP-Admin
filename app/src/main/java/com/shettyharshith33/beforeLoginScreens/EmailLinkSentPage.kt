@@ -112,8 +112,6 @@
 
 package com.shettyharshith33.beforeLoginScreens
 
-import android.content.Intent
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -129,9 +127,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.*
 import com.google.firebase.auth.FirebaseAuth
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.newGreen
-import com.shettyharshith33.vcputtur.ui.theme.themeBlue
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.newGreen
+import com.shettyharshith33.vcputturadmin.ui.theme.themeBlue
 
 @Composable
 fun EmailLinkSentPage(navController: NavController) {

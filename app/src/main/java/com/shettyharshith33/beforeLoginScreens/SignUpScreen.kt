@@ -55,11 +55,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.shettyharshith33.firebaseAuth.AuthUser
 import com.shettyharshith33.utils.ResultState
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.myGreen
-import com.shettyharshith33.vcputtur.ui.theme.netWorkRed
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.myGreen
+import com.shettyharshith33.vcputturadmin.ui.theme.netWorkRed
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -82,7 +82,7 @@ fun SignUpScreen(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
-    var passwordVisible by remember {mutableStateOf(false)}
+    var passwordVisible by remember { mutableStateOf(false) }
 
     if (isDialog) {
         Dialog(onDismissRequest = {}) {
@@ -204,7 +204,7 @@ fun SignUpScreen(
                     R.drawable.visibilty_off
 
                 Image(painterResource(icon), contentDescription = "",
-                    modifier = Modifier.clickable { passwordVisible =!passwordVisible })
+                    modifier = Modifier.clickable { passwordVisible = !passwordVisible })
             },
             colors = TextFieldDefaults.colors(
                 unfocusedIndicatorColor = if (passwordError) Color.Red else dodgerBlue,
@@ -230,10 +230,11 @@ fun SignUpScreen(
                                 val firebaseUser = viewModel.getCurrentUser()
                                 firebaseUser?.let { user ->
                                     user.sendEmailVerification().addOnCompleteListener { task ->
-                                        if (task.isSuccessful)
-                                        {
+                                        if (task.isSuccessful) {
                                             context.showMsg("Check your mail for verification")
-                                            navController.navigate(BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE)
+                                            navController.navigate(
+                                                BeforeLoginScreensNavigationObject.EMAIL_LINK_SENT_PAGE
+                                            )
                                         } else {
                                             context.showMsg("Failed to send verification email. Try again.")
                                         }
@@ -264,39 +265,6 @@ fun SignUpScreen(
         Spacer(modifier = Modifier.height(10.dp))
         // Get screen width and height
         val configuration = LocalConfiguration.current
-        val screenWidth = configuration.screenWidthDp.dp
-        val screenHeight = configuration.screenHeightDp.dp
-        // Sign-in with Google Button
-
-//
-//        Button(
-//            modifier = Modifier
-//                .fillMaxWidth(0.8f)
-//                .height(screenHeight * 0.06f)
-//                .border(0.5.dp, Color.Transparent, shape = RoundedCornerShape(5.dp))
-//                .widthIn(max = 400.dp),
-//            onClick = {
-//                context.showMsg("Currently Unavailable")
-//                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-//                triggerVibration(context)
-//                return@Button
-//            },
-//            shape = RoundedCornerShape(5.dp),
-//            colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
-//        ) {
-//            Text(
-//                "Sign-Up with Google",
-//                color = Color.Black,
-//                fontSize = (screenWidth.value * 0.04f).sp
-//            )
-//            Spacer(modifier = Modifier.width(10.dp))
-//            Icon(
-//                painterResource(R.drawable.googlelogo),
-//                contentDescription = null,
-//                tint = Color.Unspecified
-//            )
-//        }
-
     }
 }
 

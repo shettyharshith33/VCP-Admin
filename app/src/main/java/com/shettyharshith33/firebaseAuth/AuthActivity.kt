@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.database.FirebaseDatabase
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigation
-import com.shettyharshith33.vcputtur.ui.theme.themeBlue
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

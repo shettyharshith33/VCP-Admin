@@ -5,20 +5,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,19 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.shettyharshith33.beforeLoginScreens.BeforeLoginScreensNavigationObject
-import com.shettyharshith33.vcputtur.ui.theme.lightestDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.orange
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
-import com.shettyharshith33.vcputtur.ui.theme.textColor
+import com.shettyharshith33.vcputturadmin.ui.theme.lightestDodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.ui.theme.textColor
 
 @Composable
 fun DepartmentsScreen(navController: NavController) {
@@ -81,7 +72,7 @@ fun DepartmentsScreen(navController: NavController) {
                         modifier = Modifier
                             .padding(16.dp)
                             .height(50.dp)
-                            .clickable { navController.navigate(BeforeLoginScreensNavigationObject.TEACHER_LIST_SCREEN) }
+                            .clickable { navController.navigate(BeforeLoginScreensNavigationObject.BCA_TEACHER_LIST_SCREEN) }
                             .width(150.dp)
                             .clip(RoundedCornerShape(12.dp))
                             .background(Color.White),
@@ -92,7 +83,7 @@ fun DepartmentsScreen(navController: NavController) {
                             modifier = Modifier
                                 .clickable {
                                     navController.navigate(
-                                        BeforeLoginScreensNavigationObject.TEACHER_LIST_SCREEN
+                                        BeforeLoginScreensNavigationObject.BCA_TEACHER_LIST_SCREEN
                                     )
                                 },
                             fontFamily = poppinsFontFamily,
@@ -438,6 +429,9 @@ fun DepartmentsScreen(navController: NavController) {
                     }
                     Box(
                         modifier = Modifier
+                            .clickable {
+                                navController.navigate(BeforeLoginScreensNavigationObject.BCOM_TEACHER_LIST_SCREEN)
+                            }
                             .padding(16.dp)
                             .height(50.dp)
                             .width(150.dp)
@@ -446,7 +440,12 @@ fun DepartmentsScreen(navController: NavController) {
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
+
                             "Commerce",
+                            modifier = Modifier
+                                .clickable {
+                                    navController.navigate(BeforeLoginScreensNavigationObject.BCOM_TEACHER_LIST_SCREEN)
+                                },
                             fontFamily = poppinsFontFamily,
                             fontWeight = FontWeight.SemiBold,
                             color = textColor

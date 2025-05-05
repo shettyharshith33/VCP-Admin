@@ -1,7 +1,6 @@
 package com.shettyharshith33.afterLoginScreens
 
 import SetStatusBarColor
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,11 +27,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.lightestDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.orange
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
-import com.shettyharshith33.vcputtur.ui.theme.textColor
+import com.shettyharshith33.vcputturadmin.ui.theme.lightestDodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.orange
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.ui.theme.textColor
 
 @Composable
 fun AcademicsScreen(navController: NavController) {

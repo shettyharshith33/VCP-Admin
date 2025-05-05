@@ -2,7 +2,6 @@ package com.shettyharshith33.ugCourses
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,9 +23,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
 
 @Composable
 fun BSC(navController: NavController) {

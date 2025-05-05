@@ -36,7 +36,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalConfiguration
@@ -54,13 +53,11 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.android.gms.auth.api.identity.Identity
 import com.shettyharshith33.utils.GoogleAuthUIClient
-import com.shettyharshith33.vcputtur.R
-import com.shettyharshith33.vcputtur.ui.theme.dodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.lightDodgerBlue
-import com.shettyharshith33.vcputtur.ui.theme.myGrey
-import com.shettyharshith33.vcputtur.ui.theme.poppinsFontFamily
-import com.shettyharshith33.vcputtur.ui.theme.signInGrey
-import com.valentinilk.shimmer.shimmer
+import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputturadmin.ui.theme.dodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.lightDodgerBlue
+import com.shettyharshith33.vcputturadmin.ui.theme.myGrey
+import com.shettyharshith33.vcputturadmin.ui.theme.poppinsFontFamily
 import kotlinx.coroutines.launch
 
 

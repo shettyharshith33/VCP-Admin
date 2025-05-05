@@ -1,4 +1,4 @@
-package com.shettyharshith33.vcputtur
+package com.shettyharshith33.vcputturadmin
 
 import org.junit.Test
 

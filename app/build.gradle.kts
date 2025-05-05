@@ -19,7 +19,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.shettyharshith33.vcputtur"
+        applicationId = "com.shettyharshith33.vcputturadmin"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
