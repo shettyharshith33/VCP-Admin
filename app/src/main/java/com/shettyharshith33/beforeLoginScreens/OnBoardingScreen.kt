@@ -53,7 +53,7 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.android.gms.auth.api.identity.Identity
 import com.shettyharshith33.utils.GoogleAuthUIClient
-import com.shettyharshith33.vcputturadmin.R
+import com.shettyharshith33.vcputtur.R
 import com.shettyharshith33.vcputturadmin.ui.theme.dodgerBlue
 import com.shettyharshith33.vcputturadmin.ui.theme.lightDodgerBlue
 import com.shettyharshith33.vcputturadmin.ui.theme.myGrey
@@ -138,22 +138,15 @@ fun OnBoardingScreen(
 
         // College Name
         Text(
-            "Vivekananda College of",
+            "VCP Admin",
             fontSize = (screenWidth.value * 0.05f).sp,
             color = dodgerBlue,
             fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
         )
         Text(
-            "Arts, Science and Commerce",
+            "Welcome Teachers",
             fontSize = (screenWidth.value * 0.05f).sp,
-            color = dodgerBlue,
-            fontFamily = poppinsFontFamily,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            "(Autonomous)",
-            fontSize = (screenWidth.value * 0.04f).sp,
             color = dodgerBlue,
             fontFamily = poppinsFontFamily,
             fontWeight = FontWeight.Bold
